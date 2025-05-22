@@ -1,7 +1,9 @@
 import { createBrowserRouter } from "react-router";
-import App from "../App";
+
 import RootLayout from "../layouts/RootLayout";
 import Home from "../components/Home/Home";
+import AddRecipe from "../components/AddRecipe/AddRecipe";
+import LoaderSpinner from "../components/Loader/LoaderSpinner";
 
 const router = createBrowserRouter([
     {   
@@ -10,15 +12,25 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
+                loader: ()=> fetch('http://localhost:3000/recipes'),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
                 Component: Home,
             },
             {
-                path: 'addRecipe',
-                element: <h2>Add Coffee Page</h2>,
+                path: 'allRecipe',
+                element: <h2>All Recipe Page</h2>
             },
             {
-                path: 'updateCoffee',
-                element: <h2>Update Coffee Page</h2>
+                path: 'addRecipe',
+                element: <AddRecipe></AddRecipe>,
+            },
+            {
+                path: 'updateRecipe',
+                element: <h2>Update Recipe Page</h2>
+            },
+            {
+                path: 'myRecipe',
+                element: <h2>My Recipe Page</h2>
             },
         ]
 
