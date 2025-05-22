@@ -4,6 +4,7 @@ import RootLayout from "../layouts/RootLayout";
 import Home from "../components/Home/Home";
 import AddRecipe from "../components/AddRecipe/AddRecipe";
 import LoaderSpinner from "../components/Loader/LoaderSpinner";
+import RecipeDetails from "../components/RecipeDetails/RecipeDetails";
 
 const router = createBrowserRouter([
     {   
@@ -24,8 +25,16 @@ const router = createBrowserRouter([
                 path: 'addRecipe',
                 element: <AddRecipe></AddRecipe>,
             },
+
             {
-                path: 'updateRecipe',
+                path: 'recipe/:id',
+                loader: ({params})=> fetch(`http://localhost:3000/recipes/${params.id}`),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+                Component: RecipeDetails,
+            },  
+        
+            {
+                path: 'updateRecipe/:id',
                 element: <h2>Update Recipe Page</h2>
             },
             {
