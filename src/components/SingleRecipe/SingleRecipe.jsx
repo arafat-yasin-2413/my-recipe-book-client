@@ -4,7 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const SingleRecipe = ({ recipe }) => {
+const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 	const { _id, title, cuisine, image, likes } = recipe || {};
 
 	const handleDelete = (id) => {
@@ -33,6 +33,10 @@ const SingleRecipe = ({ recipe }) => {
 								text: "Your recipe has been deleted.",
 								icon: "success",
 							});
+
+                            // remove the recipe from the state
+                            const remainingRecipes = recipes.filter((rec) => rec._id !== _id);
+                            setRecipes(remainingRecipes);
 						}
 					});
 			}
