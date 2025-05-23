@@ -1,9 +1,12 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router";
 
 const SignUp = () => {
-	const { createUser } = use(AuthContext);
+	const [error, setError] = useState("");
+	const { createUser, updateUserProfile, user, setUser } = use(AuthContext);
+    const navigate = useNavigate();
 
 	const handleSignUp = (e) => {
 		e.preventDefault();
@@ -16,19 +19,61 @@ const SignUp = () => {
 		// console.log(email);
 		// console.log(password);
 
-		const { email, password, ...rest } = Object.fromEntries(
+		setError("");
+        const { email, password, ...rest } = Object.fromEntries(
 			formData.entries()
 		);
+
+		const haveDigitExp = /(?=.*\d)/;
+		const haveLowerCase = /(?=.*[a-z])/;
+		const haveUpperCase = /(?=.*[A-Z])/;
+		const haveLength = /^.{6,}$/;
+
+		if (!haveLength.test(password)) {
+			setError("Password must be at least 6 character or long.");
+
+			return;
+		} else if (!haveDigitExp.test(password)) {
+			setError("Password must have at least one Digit!!!");
+			return;
+		} else if (!haveLowerCase.test(password)) {
+			setError("Password must have one Lowercase Letter!");
+			return;
+		} else if (!haveUpperCase.test(password)) {
+			setError("Password must have one Uppercase Letter!");
+			return;
+		}
+
+		
 
 		createUser(email, password)
 			.then((result) => {
 				console.log(result.user);
 
+				// update user profile
+				updateUserProfile({
+					displayName: formData.get("name"),
+					photoURL: formData.get("photo"),
+				})
+					.then(() => {
+						setUser({
+							...user,
+							displayName: formData.get("name"),
+							photoURL: formData.get("photo"),
+						});
+						// navigate("/");
+					})
+					.catch((error) => {
+						// console.log(error);
+						setUser(user);
+					});
+                    navigate("/");
+
 				const userProfileInfo = {
 					email,
 					...rest,
-                    creationTime: result.user?.metadata?.creationTime,
-                    lastSignInTime: result.user?.metadata?.lastSignInTime,
+					creationTime: result.user?.metadata?.creationTime,
+					lastSignInTime: result.user?.metadata?.lastSignInTime,
 				};
 
 				// save profile info to the db
@@ -60,6 +105,7 @@ const SignUp = () => {
 			})
 			.catch((error) => {
 				console.log(error);
+				setError(error.message);
 			});
 	};
 
@@ -78,15 +124,6 @@ const SignUp = () => {
 							className="input w-full"
 							placeholder="your name"
 							name="name"
-						/>
-
-						{/* phone */}
-						<label className="label">Phone</label>
-						<input
-							type="text"
-							className="input w-full"
-							placeholder="your phone no."
-							name="phone"
 						/>
 
 						{/* photo */}
@@ -115,12 +152,29 @@ const SignUp = () => {
 							placeholder="Password"
 							name="password"
 						/>
+
+
+                        {/* showing error */}
+						{error && (
+							<p className="text-red-400 font-semibold">
+								{error}
+							</p>
+						)}
+
+
 						<div>
 							<a className="link link-hover">Forgot password?</a>
 						</div>
 						<button className="btn btn-neutral mt-4">
 							Sign Up
 						</button>
+
+						<p className="text-center text-sm font-semibold pt-5">
+							Already have an account?{" "}
+							<Link to="/login" className="text-secondary hover:underline hover:text-blue-600">
+								Login
+							</Link>{" "}
+						</p>
 					</form>
 				</div>
 			</div>

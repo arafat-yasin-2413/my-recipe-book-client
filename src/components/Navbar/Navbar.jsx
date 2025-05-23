@@ -1,20 +1,47 @@
-import React from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+	const { user, logOutUser } = use(AuthContext);
 
+	const handleLogOut = () => {
+		logOutUser()
+			.then(() => {
+				toast.success("You Logged Out Successfully.");
+				// alert("You Logged Out Successfully.");
+			})
+			.catch((error) => {
+				// console.log(error);
+				toast.error("Logout Unsuccessfull!!");
+			});
+	};
 
-
-    const links = 
-        <>
-        
-            <li><NavLink to="/" className="nav">Home</NavLink></li>
-            <li><NavLink to="/allRecipe" className="nav">All Recipe</NavLink></li>
-            <li><NavLink to="/addRecipe" className="nav">Add Recipe</NavLink></li>
-            <li><NavLink to="/myRecipe" className="nav">My Recipe</NavLink></li>
-    
-    
-        </>
+	const links = (
+		<>
+			<li>
+				<NavLink to="/" className="nav">
+					Home
+				</NavLink>
+			</li>
+			<li>
+				<NavLink to="/allRecipe" className="nav">
+					All Recipe
+				</NavLink>
+			</li>
+			<li>
+				<NavLink to="/addRecipe" className="nav">
+					Add Recipe
+				</NavLink>
+			</li>
+			<li>
+				<NavLink to="/myRecipe" className="nav">
+					My Recipe
+				</NavLink>
+			</li>
+		</>
+	);
 
 	return (
 		<div className="navbar bg-base-100 shadow-sm">
@@ -48,25 +75,40 @@ const Navbar = () => {
 						{links}
 					</ul>
 				</div>
-				<NavLink to="/" className={"flex justify-center items-center gap-1"}>
-                    <img src="/assets/recipe.png" className="w-8" alt="" />
-                    <h4 className="text-xl font-semibold">Recipe Book</h4>
-                </NavLink>
+				<NavLink
+					to="/"
+					className={"flex justify-center items-center gap-1"}
+				>
+					<img src="/assets/recipe.png" className="w-8" alt="" />
+					<h4 className="text-xl font-semibold">Recipe Book</h4>
+				</NavLink>
 			</div>
 
 			<div className="navbar-center hidden lg:flex">
-				<ul className="menu menu-horizontal px-1">
-
-					{links}
-					
-					
-				</ul>
+				<ul className="menu menu-horizontal px-1">{links}</ul>
 			</div>
 
 			<div className="navbar-end gap-2">
-				<Link to="/signup"> <button className="btn">SignUp</button> </Link>
-				<Link to="/login"> <button className="btn">Login</button> </Link>
-				<Link> <button className="btn">Logout</button> </Link>
+				<Link to="/signup">
+					{" "}
+					<button className="btn">SignUp</button>{" "}
+				</Link>
+
+				{user ? (
+					<Link
+						onClick={handleLogOut}
+						className="btn text-black hover:bg-red-600 hover:text-white"
+					>
+						Logout
+					</Link>
+				) : (
+					<Link
+						to="/login"
+						className="btn text-black hover:bg-red-600 hover:text-white"
+					>
+						Login
+					</Link>
+				)}
 			</div>
 		</div>
 	);
