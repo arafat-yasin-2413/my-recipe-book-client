@@ -6,6 +6,9 @@ import AddRecipe from "../components/AddRecipe/AddRecipe";
 import LoaderSpinner from "../components/Loader/LoaderSpinner";
 import RecipeDetails from "../components/RecipeDetails/RecipeDetails";
 import UpdateRecipe from "../components/UpdateRecipe/UpdateRecipe";
+import Login from "../components/Login/Login";
+import SignUp from "../components/SingnUp/SignUp";
+
 
 const router = createBrowserRouter([
     {   
@@ -44,6 +47,20 @@ const router = createBrowserRouter([
                 path: 'myRecipe',
                 element: <h2>My Recipe Page</h2>
             },
+
+
+
+            {
+                path: 'login',
+                Component: Login,
+
+            },
+
+            {
+                path: 'signup',
+                Component: SignUp,
+                
+            }
         ]
 
     },
