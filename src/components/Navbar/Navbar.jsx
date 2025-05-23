@@ -93,13 +93,13 @@ const Navbar = () => {
 			<div className="navbar-end gap-2">
 				{!user && <img className="w-8" src={normalUser} alt="" />}
 
-				{/* {
-                    user && <img className="w-8 rounded-full" src={user.photoURL} alt="" />
-                } */}
+				{
+                    user && 
+                
 
 				<div className="relative group">
 					<img
-						src={user ? user.photoURL : normalUser}
+						src={user ? user.photoURL : ""}
 						alt="User"
 						className="w-8 h-8 rounded-full cursor-pointer border"
 					/>
@@ -119,6 +119,8 @@ const Navbar = () => {
 						</button>
 					</div>
 				</div>
+
+                }
 
 				{!user && (
 					<>

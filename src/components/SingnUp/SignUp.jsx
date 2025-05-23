@@ -1,7 +1,7 @@
 import React, { use, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import Swal from "sweetalert2";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
 const SignUp = () => {
@@ -9,6 +9,7 @@ const SignUp = () => {
     const [success, setSuccess] = useState(false);
 	const { createUser, updateUserProfile, user, setUser, googleLogin } = use(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
 
 	const handleSignUp = (e) => {
 		e.preventDefault();
@@ -118,6 +119,11 @@ const SignUp = () => {
 							form.reset();
 						}
 					});
+
+                    const desiredPath = location.state?.from?.pathname || "/";
+                    navigate(desiredPath);
+
+                    
 			})
 			.catch((error) => {
 				console.log(error);
@@ -199,9 +205,12 @@ const SignUp = () => {
 						<div>
 							<a className="link link-hover">Forgot password?</a>
 						</div>
+
+                        
 						<button className="btn btn-neutral mt-4">
 							Sign Up
 						</button>
+                        
 
                         {/* Google */}
 						<button
