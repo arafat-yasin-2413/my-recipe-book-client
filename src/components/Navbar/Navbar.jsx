@@ -1,10 +1,12 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+const normalUser = "/assets/nUser.png";
 
 const Navbar = () => {
 	const { user, logOutUser } = use(AuthContext);
+	const [showName, setShowName] = useState(false);
 
 	const handleLogOut = () => {
 		logOutUser()
@@ -89,14 +91,51 @@ const Navbar = () => {
 			</div>
 
 			<div className="navbar-end gap-2">
+				{!user && <img className="w-8" src={normalUser} alt="" />}
 
-                {/* <Link to="/signup">
-					{" "}
-					<button className="btn">SignUp</button>{" "}
-				</Link> */}
+				{/* {
+                    user && <img className="w-8 rounded-full" src={user.photoURL} alt="" />
+                } */}
 
+				<div className="relative group">
+					<img
+						src={user ? user.photoURL : normalUser}
+						alt="User"
+						className="w-8 h-8 rounded-full cursor-pointer border"
+					/>
 
-				{user ? (
+					<div
+						className="absolute top-full -left-10 px-6 mt-2 max-w-[200px] bg-white border rounded-md shadow-lg z-50 text-center
+                        opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-200"
+					>
+						<p className="text-sm font-semibold text-red-500 py-2">
+							{user?.displayName}
+						</p>
+						<button
+							onClick={handleLogOut}
+							className="btn btn-sm mb-2 text-black hover:bg-red-600 hover:text-white"
+						>
+							Logout
+						</button>
+					</div>
+				</div>
+
+				{!user && (
+					<>
+						<Link to="/signup">
+							{" "}
+							<button className="btn">Register</button>{" "}
+						</Link>
+						<Link
+							to="/login"
+							className="btn text-black hover:bg-red-600 hover:text-white"
+						>
+							Login
+						</Link>
+					</>
+				)}
+
+				{/* {user ? (
 					<Link
 						onClick={handleLogOut}
 						className="btn text-black hover:bg-red-600 hover:text-white"
@@ -104,18 +143,8 @@ const Navbar = () => {
 						Logout
 					</Link>
 				) : (
-
-
-                    
-
-                         
-					<Link
-						to="/login"
-						className="btn text-black hover:bg-red-600 hover:text-white"
-					>
-						Login
-					</Link>
-				)}
+					""
+				)} */}
 			</div>
 		</div>
 	);

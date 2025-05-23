@@ -11,8 +11,8 @@ const AuthProvider = ({ children }) => {
 
     const provider = new GoogleAuthProvider();
 
-    console.log('loading status : ', loading);
-    console.log('user: ', user);
+    // console.log('loading status : ', loading);
+    // console.log('user: ', user);
 
 
 

@@ -59,6 +59,10 @@ const SignUp = () => {
                 // setSuccess(true);
                 // toast.success("User created Successfully!");
 
+
+
+                result.user.photURL= formData.get("photo");
+
 				// update user profile
 				updateUserProfile({
 					displayName: formData.get("name"),
@@ -84,6 +88,9 @@ const SignUp = () => {
 					creationTime: result.user?.metadata?.creationTime,
 					lastSignInTime: result.user?.metadata?.lastSignInTime,
 				};
+
+
+
 
 				// save profile info to the db
 				fetch("http://localhost:3000/users", {
