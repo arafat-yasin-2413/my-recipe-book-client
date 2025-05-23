@@ -90,6 +90,12 @@ const Navbar = () => {
 				<ul className="menu menu-horizontal px-1">{links}</ul>
 			</div>
 
+            <div>
+                {
+                    user && <h4 className="bg-red-100 px-4 py-1 rounded">{user?.email}</h4>
+                }
+            </div>
+
 			<div className="navbar-end gap-2">
 				{!user && <img className="w-8" src={normalUser} alt="" />}
 

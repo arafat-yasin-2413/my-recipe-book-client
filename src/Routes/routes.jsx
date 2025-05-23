@@ -9,6 +9,7 @@ import UpdateRecipe from "../components/UpdateRecipe/UpdateRecipe";
 import Login from "../components/Login/Login";
 import SignUp from "../components/SingnUp/SignUp";
 import PrivateRoute from "../providers/PrivateRoute";
+import Top6Recipes from "../components/Top6Recipes/Top6Recipes";
 
 const router = createBrowserRouter([
 	{
@@ -21,6 +22,13 @@ const router = createBrowserRouter([
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				Component: Home,
 			},
+
+            {
+                path: "recipes/top",
+                loader: ()=> fetch("http://localhost:3000/recipes/top"),
+                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+                Component: Top6Recipes,
+            },
 			{
 				path: "allRecipe",
 				element: <h2>All Recipe Page</h2>,
