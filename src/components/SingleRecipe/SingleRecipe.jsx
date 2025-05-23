@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -5,7 +6,23 @@ import { Link } from "react-router";
 import Swal from "sweetalert2";
 
 const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
-	const { _id, title, cuisine, image, likes } = recipe || {};
+    const { _id, title, cuisine, image, likes } = recipe || {};
+    const [likeCount, setLikeCount] = useState(likes);
+
+    const handleLike=()=>{
+        setLikeCount((prev) => prev + 1);
+
+        fetch(`http://localhost:3000/recipes/${_id}/like`, {
+            method: "PATCH",
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log('likes updated in db : ', data);
+        })
+        .catch((error)=>{
+            console.log('failed to update like : ', error);
+        });
+    };
 
 	const handleDelete = (id) => {
 		console.log("id to delete", id);
@@ -55,11 +72,13 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 						A card component has a figure, a body part, and inside
 						body there are title and actions parts
 					</p>
+
+                    {/* like button  */}
 					<div className="flex gap-1 items-center">
-						<button className="btn border-0">
+						<button onClick={handleLike} className="btn border-0">
 							<CiHeart className="text-xl"></CiHeart>
 						</button>
-						<h4 className="text-xl">{likes}</h4>
+						<h4 className="text-xl">{likeCount}</h4>
 					</div>
 
 					<p>cuisine : {cuisine}</p>

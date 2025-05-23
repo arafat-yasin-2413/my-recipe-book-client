@@ -14,7 +14,7 @@ const Home = () => {
 
 
 	console.log(recipes);
-    console.log(user?.displayName);
+    // console.log(user?.displayName);
 
 	return (
 		<div className="my-10">

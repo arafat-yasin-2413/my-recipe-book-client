@@ -1,7 +1,14 @@
-import React from "react";
+import React, { use } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const AddRecipe = () => {
+
+    const {user} = use(AuthContext);
+    // console.log(user);
+    // console.log(user.displayName);
+    // console.log(user.email);
+
 	const handleAddRecipe = (e) => {
 		e.preventDefault();
 
@@ -15,8 +22,8 @@ const AddRecipe = () => {
 		newRecipe.category = formData.getAll("category");
 
 		newRecipe.likes = 0;
-		newRecipe.person = "Rahim";
-		newRecipe.email = "rahim@gmail.com";
+		newRecipe.person = user?.displayName;
+		newRecipe.email = user?.email;
 
 		console.log(newRecipe);
 
@@ -57,17 +64,6 @@ const AddRecipe = () => {
 
 				<form onSubmit={handleAddRecipe}>
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-						{/* image */}
-						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">Image</label>
-							<input
-								type="text"
-								className="input w-full"
-								placeholder="Image URL"
-								name="image"
-							/>
-						</fieldset>
-
 						{/* title */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
 							<label className="label text-black">Title</label>
@@ -78,6 +74,20 @@ const AddRecipe = () => {
 								name="title"
 							/>
 						</fieldset>
+
+                        
+                        {/* image */}
+						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+							<label className="label text-black">Image</label>
+							<input
+								type="text"
+								className="input w-full"
+								placeholder="Image URL"
+								name="image"
+							/>
+						</fieldset>
+
+						
 
 						{/* ingredients */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
