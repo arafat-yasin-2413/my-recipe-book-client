@@ -89,10 +89,12 @@ const Navbar = () => {
 			</div>
 
 			<div className="navbar-end gap-2">
-				<Link to="/signup">
+
+                {/* <Link to="/signup">
 					{" "}
 					<button className="btn">SignUp</button>{" "}
-				</Link>
+				</Link> */}
+
 
 				{user ? (
 					<Link
@@ -102,6 +104,11 @@ const Navbar = () => {
 						Logout
 					</Link>
 				) : (
+
+
+                    
+
+                         
 					<Link
 						to="/login"
 						className="btn text-black hover:bg-red-600 hover:text-white"
