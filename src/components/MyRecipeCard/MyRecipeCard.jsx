@@ -81,7 +81,7 @@ const MyRecipeCard = ({ recipe, recipes, setRecipes }) => {
 					<div className="flex gap-1 items-center">
 						<button
 							onClick={handleLike}
-							className=" bg-red-100 hover:bg-gray-200 p-1 rounded border-0"
+							className="btn btn-disabled bg-red-100  p-1 rounded border-0"
 						>
 							<CiHeart className="text-[1.4rem] " />
 						</button>

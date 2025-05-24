@@ -45,6 +45,12 @@ const RecipeDetails = () => {
 				Recipe Details
 			</h2>
 
+            <div className="flex justify-center mb-6">
+                <p className="bg-orange-100 rounded max-w-fit px-4">
+                    {likeCount} people interested in this recipe.
+                </p>
+            </div>
+
 			<div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-md overflow-hidden border border-gray-200">
 				<img
 					className="w-full h-[300px] object-cover p-2 rounded-2xl"
