@@ -2,11 +2,13 @@ import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
+import { useTheme } from "../../contexts/ThemeContext";
 const normalUser = "/assets/nUser.png";
 
 const Navbar = () => {
 	const { user, logOutUser } = use(AuthContext);
 	// const [showName, setShowName] = useState(false);
+	const { theme, toggleTheme } = useTheme();
 
 	const handleLogOut = () => {
 		logOutUser()
@@ -90,7 +92,13 @@ const Navbar = () => {
 				<ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
 			</div>
 
-            {/* <div>
+			<div className="flex-none">
+				<button className="btn btn-sm" onClick={toggleTheme}>
+					{theme === "light" ? "🌙 Dark" : "☀️ Light"}
+				</button>
+			</div>
+
+			{/* <div>
                 {
                     user && <h4 className="bg-red-100 px-4 py-1 rounded">{user?.email}</h4>
                 }
@@ -99,34 +107,30 @@ const Navbar = () => {
 			<div className="navbar-end gap-2">
 				{!user && <img className="w-8" src={normalUser} alt="" />}
 
-				{
-                    user && 
-                
+				{user && (
+					<div className="relative group">
+						<img
+							src={user ? user.photoURL : ""}
+							alt="User"
+							className="w-8 h-8 rounded-full cursor-pointer border"
+						/>
 
-				<div className="relative group">
-					<img
-						src={user ? user.photoURL : ""}
-						alt="User"
-						className="w-8 h-8 rounded-full cursor-pointer border"
-					/>
-
-					<div
-						className="absolute top-full -left-10 px-6 mt-2 max-w-[100px] bg-white border rounded-md shadow-lg z-50 text-center
+						<div
+							className="absolute top-full -left-10 px-6 mt-2 max-w-[100px] bg-white border rounded-md shadow-lg z-50 text-center
                         opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-200"
-					>
-						<p className="text-sm font-semibold text-red-500 py-2">
-							{user?.displayName}
-						</p>
-						<button
-							onClick={handleLogOut}
-							className="btn btn-sm mb-2 text-black hover:bg-red-600 hover:text-white"
 						>
-							Logout
-						</button>
+							<p className="text-sm font-semibold text-red-500 py-2">
+								{user?.displayName}
+							</p>
+							<button
+								onClick={handleLogOut}
+								className="btn btn-sm mb-2 text-black hover:bg-red-600 hover:text-white"
+							>
+								Logout
+							</button>
+						</div>
 					</div>
-				</div>
-
-                }
+				)}
 
 				{!user && (
 					<>

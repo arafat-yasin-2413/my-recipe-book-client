@@ -58,7 +58,7 @@ const AddRecipe = () => {
 	return (
 		<div className="my-10 ">
 			<section className="bg-blue-100 p-8 rounded-2xl">
-				<h2 className="text-3xl font-bold text-center mb-6">
+				<h2 className="text-3xl dark:text-black font-bold text-center mb-6">
 					Add Recipe Form
 				</h2>
 
@@ -66,7 +66,7 @@ const AddRecipe = () => {
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
 						{/* title */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">Title</label>
+							<label className="label ">Title</label>
 							<input
 								type="text"
 								className="input w-full"
@@ -78,7 +78,7 @@ const AddRecipe = () => {
                         
                         {/* image */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">Image</label>
+							<label className="label ">Image</label>
 							<input
 								type="text"
 								className="input w-full"
@@ -91,7 +91,7 @@ const AddRecipe = () => {
 
 						{/* ingredients */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">
+							<label className="label ">
 								Ingredients
 							</label>
 							<input
@@ -104,7 +104,7 @@ const AddRecipe = () => {
 
 						{/* instructions */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">
+							<label className="label ">
 								Instructions
 							</label>
 							<textarea
@@ -116,7 +116,7 @@ const AddRecipe = () => {
 
 						{/* preparation time */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">
+							<label className="label ">
 								Preparation Time
 							</label>
 							<input
@@ -128,7 +128,7 @@ const AddRecipe = () => {
 						</fieldset>
 						{/* chef */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">Chef</label>
+							<label className="label ">Chef</label>
 							<input
 								className="input "
 								placeholder="chef name"
@@ -138,7 +138,7 @@ const AddRecipe = () => {
 
 						{/* cuisine */}
 						<fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">Cuisine</label>
+							<label className="label ">Cuisine</label>
 							<select
 								size={4}
 								className="select px-2 min-h-[6rem] w-full"
@@ -153,7 +153,7 @@ const AddRecipe = () => {
 
 						{/* category */}
 						<fieldset className="fieldset w-full mr-20 bg-base-200 border-base-300 rounded-box border p-4">
-							<label className="label text-black">Category</label>
+							<label className="label ">Category</label>
 
 							<div className="flex flex-col gap-2 ml-2">
 								<label className="cursor-pointer">

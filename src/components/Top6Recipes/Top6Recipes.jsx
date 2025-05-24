@@ -14,7 +14,7 @@ const Top6Recipes = () => {
 	return (
 		<div className="">
 			<section className="bg-gray-200 px-4 my-10 py-4 rounded-2xl">
-				<h2 className="text-3xl text-center font-bold">
+				<h2 className="text-3xl dark:text-black text-center font-bold">
 					<Typewriter
 						words={["Our Top Recipes"]}
 						loop={true}

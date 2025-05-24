@@ -13,8 +13,8 @@ const AllRecipe = () => {
     return (
         <div>
           
-            <section className='bg-blue-100 p-4 rounded-2xl my-10'>
-				<h2 className="text-3xl text-center font-bold mt-10">
+            <section className=' bg-blue-200  p-4 rounded-2xl my-10'>
+				<h2 className="text-3xl text-center font-bold mt-10 text-base-content dark:text-black">
 					All Recipes
 				</h2>
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-3 my-10">
