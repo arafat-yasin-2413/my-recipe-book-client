@@ -16,10 +16,10 @@ const RecipeCard = ({ recipe }) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log("likes updated in db : ", data);
+				// console.log("likes updated in db : ", data);
 			})
 			.catch((error) => {
-				console.log("failed to update like : ", error);
+				// console.log("failed to update like : ", error);
 			});
 	};
 

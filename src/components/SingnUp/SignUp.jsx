@@ -56,7 +56,7 @@ const SignUp = () => {
 
 		createUser(email, password)
 			.then((result) => {
-				console.log(result.user);
+				// console.log(result.user);
                 // setSuccess(true);
                 // toast.success("User created Successfully!");
 
@@ -104,10 +104,10 @@ const SignUp = () => {
 					.then((res) => res.json())
 					.then((data) => {
 						if (data.insertedId) {
-							console.log(
-								"after profile been saved to db : ",
-								data
-							);
+							// console.log(
+							// 	"after profile been saved to db : ",
+							// 	data
+							// );
 
 							Swal.fire({
 								position: "top-end",

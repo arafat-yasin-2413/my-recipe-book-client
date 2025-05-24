@@ -29,7 +29,7 @@ const Modal = ({recipe, isOpen, onClose, onUpdated }) => {
 
 		updatedRecipe.category = formData.getAll("category");
 
-		console.log(updatedRecipe);
+		// console.log(updatedRecipe);
 
 		fetch(`http://localhost:3000/recipes/${_id}`, {
 			method: "PUT",
@@ -41,7 +41,7 @@ const Modal = ({recipe, isOpen, onClose, onUpdated }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.modifiedCount) {
-					console.log("data after update ", data);
+					// console.log("data after update ", data);
 					onClose(); 
 
                     onUpdated({ ...recipe, ...updatedRecipe});

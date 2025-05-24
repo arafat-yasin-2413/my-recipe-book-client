@@ -22,7 +22,7 @@ const RecipeDetails = () => {
 	} = recipe || {};
 
 	const [likeCount, setLikeCount] = useState(likes);
-	console.log(recipe);
+	// console.log(recipe);
 
 	const handleLike = () => {
 		setLikeCount((prev) => prev + 1);
@@ -32,10 +32,10 @@ const RecipeDetails = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log("likes updated in db : ", data);
+				// console.log("likes updated in db : ", data);
 			})
 			.catch((error) => {
-				console.log("failed to update like : ", error);
+				// console.log("failed to update like : ", error);
 			});
 	};
 

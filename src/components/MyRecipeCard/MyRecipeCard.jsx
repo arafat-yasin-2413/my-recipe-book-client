@@ -26,7 +26,7 @@ const MyRecipeCard = ({ recipe, recipes, setRecipes }) => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log("likes updated in db : ", data);
+				// console.log("likes updated in db : ", data);
 			})
 			.catch((error) => {
 				console.log("failed to update like : ", error);
@@ -34,7 +34,7 @@ const MyRecipeCard = ({ recipe, recipes, setRecipes }) => {
 	};
 
 	const handleDelete = (id) => {
-		console.log("id to delete", id);
+		// console.log("id to delete", id);
 
 		Swal.fire({
 			title: "Are you sure?",

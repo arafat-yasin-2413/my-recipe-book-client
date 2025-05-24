@@ -12,7 +12,7 @@ const AddRecipe = () => {
 	const handleAddRecipe = (e) => {
 		e.preventDefault();
 
-		console.log("form submit check");
+		// console.log("form submit check");
 
 		const form = e.target;
 		const formData = new FormData(form);
@@ -25,7 +25,7 @@ const AddRecipe = () => {
 		newRecipe.person = user?.displayName;
 		newRecipe.email = user?.email;
 
-		console.log(newRecipe);
+		// console.log(newRecipe);
 
 		// send recipe data to the db
 		fetch("http://localhost:3000/recipes", {
@@ -39,7 +39,7 @@ const AddRecipe = () => {
 			.then((data) => {
 				if (data.insertedId) {
                     
-                    console.log("after adding recipe to the db ", data);
+                    // console.log("after adding recipe to the db ", data);
 
 
 					Swal.fire({
