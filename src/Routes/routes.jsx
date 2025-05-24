@@ -10,6 +10,7 @@ import Login from "../components/Login/Login";
 import SignUp from "../components/SingnUp/SignUp";
 import PrivateRoute from "../providers/PrivateRoute";
 import Top6Recipes from "../components/Top6Recipes/Top6Recipes";
+import AllRecipe from "../components/AllRecipe/AllRecipe";
 
 const router = createBrowserRouter([
 	{
@@ -18,20 +19,16 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				loader: () => fetch("http://localhost:3000/recipes"),
+				loader: () => fetch("http://localhost:3000/recipes/top"),
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				Component: Home,
 			},
 
-            {
-                path: "recipes/top",
-                loader: ()=> fetch("http://localhost:3000/recipes/top"),
-                hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
-                Component: Top6Recipes,
-            },
 			{
 				path: "allRecipe",
-				element: <h2>All Recipe Page</h2>,
+				loader: () => fetch("http://localhost:3000/recipes"),
+				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+				Component: AllRecipe,
 			},
 			{
 				path: "addRecipe",
@@ -47,10 +44,11 @@ const router = createBrowserRouter([
 				loader: ({ params }) =>
 					fetch(`http://localhost:3000/recipes/${params.id}`),
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
-				element: <PrivateRoute>
-                    <RecipeDetails></RecipeDetails>
-                </PrivateRoute>,
-                
+				element: (
+					<PrivateRoute>
+						<RecipeDetails></RecipeDetails>
+					</PrivateRoute>
+				),
 			},
 
 			{
@@ -62,9 +60,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "myRecipe",
-				element: <PrivateRoute>
-                    <h2>My Recipe Page</h2>
-                </PrivateRoute>,
+				element: (
+					<PrivateRoute>
+						<h2>My Recipe Page</h2>
+					</PrivateRoute>
+				),
 			},
 
 			{

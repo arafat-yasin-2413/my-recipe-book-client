@@ -3,21 +3,18 @@ import { useLoaderData } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext';
 import SingleRecipe from '../SingleRecipe/SingleRecipe';
 
-const Top6Recipes = () => {
+const AllRecipe = () => {
 
     const initialRecipes = useLoaderData();
 	const [recipes, setRecipes] = useState(initialRecipes);
 	// const { user } = use(AuthContext);
 
-    // console.log(recipes);
-
     return (
-        <div className=''>
-
-
-            <section className='bg-gray-200 px-4 my-10 py-4 rounded-2xl'>
-				<h2 className="text-3xl text-center font-bold">
-					Our Top Recipes 
+        <div>
+          
+            <section className='bg-blue-100 p-4 rounded-2xl my-10'>
+				<h2 className="text-3xl text-center font-bold mt-10">
+					All Recipes
 				</h2>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10">
 					{recipes.length > 0 &&
@@ -31,9 +28,8 @@ const Top6Recipes = () => {
 						))}
 				</div>
 			</section>
-            
         </div>
     );
 };
 
-export default Top6Recipes;
+export default AllRecipe;

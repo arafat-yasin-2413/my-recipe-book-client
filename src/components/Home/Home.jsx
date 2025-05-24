@@ -1,53 +1,43 @@
-import React, { use, useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import React from "react";
+import { Link } from "react-router";
 import SingleRecipe from "../SingleRecipe/SingleRecipe";
 import { AuthContext } from "../../contexts/AuthContext";
 import Banner from "../Banner/Banner";
+import Top6Recipes from "../Top6Recipes/Top6Recipes";
 
 const Home = () => {
-	const initialRecipes = useLoaderData();
-	const [recipes, setRecipes] = useState(initialRecipes);
-	const { user } = use(AuthContext);
-	console.log(user);
+	// const initialRecipes = useLoaderData();
+	// const [recipes, setRecipes] = useState(initialRecipes);
+	// const { user } = use(AuthContext);
+	// console.log(user);
 
 	// console.log(user?.photoURL);
 
-	console.log(recipes);
+	// console.log(recipes);
 	// console.log(user?.displayName);
 
 	return (
 		<div>
+			<Banner></Banner>
 
-            <Banner></Banner>
+			<Top6Recipes></Top6Recipes>
 
-
-			<div className="mt-10">
-				<Link to="/recipes/top">
-					<button className="btn py-12 px-2 text-4xl">
-						Top 6 Recipes
-					</button>
-				</Link>
+			<div  className="flex justify-center items-center">
+                <Link to="/allRecipe">
+				<button className="relative inline-block text-lg group">
+					<span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
+						<span className="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+						<span className="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-red-500 text-white group-hover:-rotate-180 ease"></span>
+						<span className="relative font-bold">Show All</span>
+					</span>
+					<span
+						className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
+						data-rounded="rounded-lg"
+					></span>
+				</button>
+                </Link>
 			</div>
-
-
-
-            {/* All Recipe section */}
-			<section>
-				<h2 className="text-3xl text-center font-bold mt-24">
-					All Recipes Home Page
-				</h2>
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10">
-					{recipes.length > 0 &&
-						recipes.map((recipe) => (
-							<SingleRecipe
-								key={recipe._id}
-								recipe={recipe}
-								recipes={recipes}
-								setRecipes={setRecipes}
-							></SingleRecipe>
-						))}
-				</div>
-			</section>
+			
 		</div>
 	);
 };

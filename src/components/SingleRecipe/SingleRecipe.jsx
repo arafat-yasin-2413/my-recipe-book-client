@@ -64,7 +64,7 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 		<div>
 			<div className="card bg-base-100 shadow-sm">
 				<figure>
-					<img src={image} alt={`image of ${title}`} />
+					<img className="w-full h-[200px] object-cover px-2 py-2 rounded-2xl" src={image} alt={`image of ${title}`} />
 				</figure>
 				<div className="card-body">
 					<h2 className="card-title">{title}</h2>
@@ -88,7 +88,7 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 							<button className="btn btn-sm">View Details</button>
 						</Link>
 
-						<Link to={`updateRecipe/${_id}`}>
+						{/* <Link to={`updateRecipe/${_id}`}>
 							<button className="btn btn-sm">
 								<FaRegEdit className="text-xl"></FaRegEdit>
 							</button>
@@ -99,7 +99,7 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 							className="btn btn-sm"
 						>
 							<MdDelete className="text-xl"></MdDelete>
-						</button>
+						</button> */}
 					</div>
 				</div>
 			</div>
