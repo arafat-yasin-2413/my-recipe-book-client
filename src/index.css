@@ -13,5 +13,7 @@
 
 
 .nav.active{
-	color: red;
+	font-weight: 600;
+	color: white;
+	background-color: red;
 }

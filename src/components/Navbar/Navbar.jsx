@@ -23,22 +23,22 @@ const Navbar = () => {
 	const links = (
 		<>
 			<li>
-				<NavLink to="/" className="nav">
+				<NavLink to="/" className="nav font-semibold">
 					Home
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/allRecipe" className="nav">
+				<NavLink to="/allRecipe" className="nav font-semibold">
 					All Recipe
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/addRecipe" className="nav">
+				<NavLink to="/addRecipe" className="nav font-semibold">
 					Add Recipe
 				</NavLink>
 			</li>
 			<li>
-				<NavLink to="/myRecipe" className="nav">
+				<NavLink to="/myRecipe" className="nav font-semibold">
 					My Recipe
 				</NavLink>
 			</li>
@@ -87,7 +87,7 @@ const Navbar = () => {
 			</div>
 
 			<div className="navbar-center hidden lg:flex">
-				<ul className="menu menu-horizontal px-1">{links}</ul>
+				<ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
 			</div>
 
             <div>
