@@ -21,14 +21,14 @@ const router = createBrowserRouter([
 		children: [
 			{
 				index: true,
-				loader: () => fetch("http://localhost:3000/recipes/top"),
+				loader: () => fetch("https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes/top"),
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				Component: Home,
 			},
 
 			{
 				path: "allRecipe",
-				loader: () => fetch("http://localhost:3000/recipes"),
+				loader: () => fetch("https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes"),
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				Component: AllRecipe,
 			},
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
 			{
 				path: "recipe/:id",
 				loader: ({ params }) =>
-					fetch(`http://localhost:3000/recipes/${params.id}`),
+					fetch(`https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes/${params.id}`),
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				element: (
 					<PrivateRoute>
@@ -56,13 +56,13 @@ const router = createBrowserRouter([
 			// {
 			// 	path: "updateRecipe/:id",
 			// 	loader: ({ params }) =>
-			// 		fetch(`http://localhost:3000/recipes/${params.id}`),
+			// 		fetch(`https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes/${params.id}`),
 			// 	hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 			// 	element: <UpdateRecipe></UpdateRecipe>,
 			// },
 			{
 				path: "myRecipe",
-                loader: () => fetch("http://localhost:3000/recipes"),
+                loader: () => fetch("https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes"),
 				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				element: (
 					<PrivateRoute>

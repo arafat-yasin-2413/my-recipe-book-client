@@ -28,7 +28,7 @@ const AddRecipe = () => {
 		// console.log(newRecipe);
 
 		// send recipe data to the db
-		fetch("http://localhost:3000/recipes", {
+		fetch("https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes", {
 			method: "POST",
 			headers: {
 				"content-type": "application/json",

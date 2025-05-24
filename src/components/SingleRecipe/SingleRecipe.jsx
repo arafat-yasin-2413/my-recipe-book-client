@@ -12,7 +12,7 @@ const SingleRecipe = ({ recipe }) => {
 	const handleLike = () => {
 		setLikeCount((prev) => prev + 1);
 
-		fetch(`http://localhost:3000/recipes/${_id}/like`, {
+		fetch(`https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes/${_id}/like`, {
 			method: "PATCH",
 		})
 			.then((res) => res.json())
@@ -38,7 +38,7 @@ const SingleRecipe = ({ recipe }) => {
 	// 	}).then((result) => {
 	// 		// console.log(result.isConfirmed);
 	// 		if (result.isConfirmed) {
-	// 			fetch(`http://localhost:3000/recipes/${_id}`, {
+	// 			fetch(`https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes/${_id}`, {
 	// 				method: "DELETE",
 	// 			})
 	// 				.then((res) => res.json())

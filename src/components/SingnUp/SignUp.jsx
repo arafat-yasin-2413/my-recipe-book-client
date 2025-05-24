@@ -94,7 +94,7 @@ const SignUp = () => {
 
 
 				// save profile info to the db
-				fetch("http://localhost:3000/users", {
+				fetch("https://b11a10-server-side-arafat-yasin-2413.vercel.app/users", {
 					method: "POST",
 					headers: {
 						"content-type": "application/json",

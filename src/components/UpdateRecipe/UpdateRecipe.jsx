@@ -28,7 +28,7 @@ const UpdateRecipe = () => {
 
 		console.log(updatedRecipe);
 
-		fetch(`http://localhost:3000/recipes/${_id}`, {
+		fetch(`https://b11a10-server-side-arafat-yasin-2413.vercel.app/recipes/${_id}`, {
 			method: "PUT",
 			headers: {
 				"content-type": "application/json",
