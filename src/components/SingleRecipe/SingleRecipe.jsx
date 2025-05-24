@@ -7,7 +7,7 @@ const SingleRecipe = ({ recipe }) => {
 	const { _id, title, cuisine, image, likes, preparationTime } = recipe || {};
 	const [likeCount, setLikeCount] = useState(likes);
 
-	console.log(recipe);
+	// console.log(recipe);
 
 	const handleLike = () => {
 		setLikeCount((prev) => prev + 1);

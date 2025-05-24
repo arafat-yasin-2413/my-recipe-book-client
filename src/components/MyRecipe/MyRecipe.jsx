@@ -7,6 +7,7 @@ const MyRecipe = () => {
 
 
     const initialRecipes = useLoaderData();
+    // console.log(initialRecipes);
     
     
 	const { user } = use(AuthContext);
@@ -21,7 +22,7 @@ const MyRecipe = () => {
 
     
 
-    // console.log(initialRecipes);
+
 
     
 

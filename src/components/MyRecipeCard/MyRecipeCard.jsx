@@ -4,16 +4,19 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
+import Modal from "../Modal/Modal";
 
-const MyRecipeCard = ({
-	recipe,
-    recipes, 
-    setRecipes
-	
+const MyRecipeCard = ({ recipe, recipes, setRecipes }) => {
+	const { _id, title, cuisine, image, likes,category,ingredients,preparationTime } = recipe || {};
+	const [likeCount, setLikeCount] = useState(likes);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
-}) => {
-	const { _id, title, cuisine, image, likes } = recipe || {};
-    const [likeCount, setLikeCount] = useState(likes)
+	const handleRecipeUpdate = (updatedRecipe) => {
+		const updatedRecipes = recipes.map((r) =>
+			r._id === updatedRecipe._id ? updatedRecipe : r
+		);
+		setRecipes(updatedRecipes);
+	};
 
 	const handleLike = () => {
 		setLikeCount((prev) => prev + 1);
@@ -42,22 +45,18 @@ const MyRecipeCard = ({
 			cancelButtonColor: "#d33",
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
-			// console.log(result.isConfirmed);
 			if (result.isConfirmed) {
 				fetch(`http://localhost:3000/recipes/${_id}`, {
 					method: "DELETE",
 				})
 					.then((res) => res.json())
 					.then((data) => {
-						// console.log('after delete ', data);
 						if (data.deletedCount) {
 							Swal.fire({
 								title: "Deleted!",
 								text: "Your recipe has been deleted.",
 								icon: "success",
 							});
-
-							// remove the recipe from the state
 							const remainingRecipes = recipes.filter(
 								(rec) => rec._id !== _id
 							);
@@ -79,38 +78,87 @@ const MyRecipeCard = ({
 					/>
 				</figure>
 				<div className="card-body">
-					{/* like button  */}
 					<div className="flex gap-1 items-center">
 						<button
 							onClick={handleLike}
 							className=" bg-red-100 hover:bg-gray-200 p-1 rounded border-0"
 						>
-							<CiHeart className="text-[1.4rem] "></CiHeart>
+							<CiHeart className="text-[1.4rem] " />
 						</button>
 						<h4 className="text-[1rem] font-medium">{likeCount}</h4>
 					</div>
 					<h2 className="card-title">{title}</h2>
-
 					<p>cuisine : {cuisine}</p>
+
+                    <div className="text-sm text-gray-600 mb-1">
+						<span className="font-semibold">Preparation Time:</span>{" "}
+						{preparationTime} minutes
+					</div>
+
+					<div className="text-sm text-gray-600 mb-1">
+						<span className="font-semibold">Cuisine:</span>{" "}
+						{cuisine}
+					</div>
+					<div className="flex gap-2 text-sm text-gray-600 items-center">
+						<span className="font-semibold">Category:</span>
+						<div className="flex flex-col gap-2 ">
+							{Array.isArray(category) ? (
+								category.map((cat, index) => (
+									<h4
+										className="bg-blue-200 px-3 py-1 rounded"
+										key={index}
+									>
+										{cat}
+									</h4>
+								))
+							) : (
+								<h4 className="bg-blue-200 px-3 py-1 rounded">
+									{category}
+								</h4>
+							)}
+						</div>
+					</div>
+
+                    <div className="mt-3">
+						<h3 className="font-semibold text-gray-800">
+							Ingredients:
+						</h3>
+						<p className="text-sm text-gray-700">
+							{ingredients}
+						</p>
+					</div>
 
 					<div className="flex gap-1">
 						<Link to={`/recipe/${_id}`}>
 							<button className="btn btn-sm">See Details</button>
 						</Link>
-
-						<Link to={`updateRecipe/${_id}`}>
-							<button className="btn btn-sm">
-								<FaRegEdit className="text-xl"></FaRegEdit>
-							</button>
-						</Link>
-
+						<button
+							onClick={() => setIsModalOpen(true)}
+							className="btn btn-sm"
+						>
+							<FaRegEdit className="text-xl" />
+						</button>
 						<button
 							onClick={() => handleDelete(_id)}
 							className="btn btn-sm"
 						>
-							<MdDelete className="text-xl"></MdDelete>
+							<MdDelete className="text-xl" />
 						</button>
 					</div>
+					{/* 
+					<button
+						className="btn bg-yellow-500 text-white"
+						onClick={() => setIsModalOpen(true)}
+					>
+						Update Recipe
+					</button> */}
+
+					<Modal
+						recipe={recipe}
+						isOpen={isModalOpen}
+						onClose={() => setIsModalOpen(false)}
+						onUpdated={handleRecipeUpdate}
+					></Modal>
 				</div>
 			</div>
 		</div>

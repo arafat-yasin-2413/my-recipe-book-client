@@ -53,13 +53,13 @@ const router = createBrowserRouter([
 				),
 			},
 
-			{
-				path: "updateRecipe/:id",
-				loader: ({ params }) =>
-					fetch(`http://localhost:3000/recipes/${params.id}`),
-				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
-				element: <UpdateRecipe></UpdateRecipe>,
-			},
+			// {
+			// 	path: "updateRecipe/:id",
+			// 	loader: ({ params }) =>
+			// 		fetch(`http://localhost:3000/recipes/${params.id}`),
+			// 	hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
+			// 	element: <UpdateRecipe></UpdateRecipe>,
+			// },
 			{
 				path: "myRecipe",
                 loader: () => fetch("http://localhost:3000/recipes"),
