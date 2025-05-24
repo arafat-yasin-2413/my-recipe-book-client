@@ -1,4 +1,4 @@
-import React, { use, useState } from "react";
+import React, { use } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
 import { toast } from "react-toastify";
@@ -6,7 +6,7 @@ const normalUser = "/assets/nUser.png";
 
 const Navbar = () => {
 	const { user, logOutUser } = use(AuthContext);
-	const [showName, setShowName] = useState(false);
+	// const [showName, setShowName] = useState(false);
 
 	const handleLogOut = () => {
 		logOutUser()
@@ -16,7 +16,7 @@ const Navbar = () => {
 			})
 			.catch((error) => {
 				// console.log(error);
-				toast.error("Logout Unsuccessfull!!");
+				toast.error(error);
 			});
 	};
 

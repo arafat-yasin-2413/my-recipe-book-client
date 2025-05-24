@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../components/Navbar/Navbar';
 import Home from '../components/Home/Home';
+import Footer from '../components/Footer/Footer';
 
 
 const RootLayout = () => {
@@ -13,6 +14,9 @@ const RootLayout = () => {
             <Outlet></Outlet>
 
             {/* eikhane footer bosbe */}
+
+
+            <Footer></Footer>
         </div>
     );
 };
