@@ -12,6 +12,7 @@ import PrivateRoute from "../providers/PrivateRoute";
 import Top6Recipes from "../components/Top6Recipes/Top6Recipes";
 import AllRecipe from "../components/AllRecipe/AllRecipe";
 import ErrorPage from "../pages/ErrorPage";
+import MyRecipe from "../components/MyRecipe/MyRecipe";
 
 const router = createBrowserRouter([
 	{
@@ -61,9 +62,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "myRecipe",
+                loader: () => fetch("http://localhost:3000/recipes"),
+				hydrateFallbackElement: <LoaderSpinner></LoaderSpinner>,
 				element: (
 					<PrivateRoute>
-						<h2>My Recipe Page</h2>
+						<MyRecipe></MyRecipe>
 					</PrivateRoute>
 				),
 			},

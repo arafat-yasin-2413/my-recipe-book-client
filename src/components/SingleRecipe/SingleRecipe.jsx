@@ -3,7 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
+const SingleRecipe = ({ recipe }) => {
 	const { _id, title, cuisine, image, likes, preparationTime } = recipe || {};
 	const [likeCount, setLikeCount] = useState(likes);
 
@@ -24,43 +24,43 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 			});
 	};
 
-	const handleDelete = (id) => {
-		console.log("id to delete", id);
+	// const handleDelete = (id) => {
+	// 	console.log("id to delete", id);
 
-		Swal.fire({
-			title: "Are you sure?",
-			text: "You won't be able to revert this!",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, delete it!",
-		}).then((result) => {
-			// console.log(result.isConfirmed);
-			if (result.isConfirmed) {
-				fetch(`http://localhost:3000/recipes/${_id}`, {
-					method: "DELETE",
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						// console.log('after delete ', data);
-						if (data.deletedCount) {
-							Swal.fire({
-								title: "Deleted!",
-								text: "Your recipe has been deleted.",
-								icon: "success",
-							});
+	// 	Swal.fire({
+	// 		title: "Are you sure?",
+	// 		text: "You won't be able to revert this!",
+	// 		icon: "warning",
+	// 		showCancelButton: true,
+	// 		confirmButtonColor: "#3085d6",
+	// 		cancelButtonColor: "#d33",
+	// 		confirmButtonText: "Yes, delete it!",
+	// 	}).then((result) => {
+	// 		// console.log(result.isConfirmed);
+	// 		if (result.isConfirmed) {
+	// 			fetch(`http://localhost:3000/recipes/${_id}`, {
+	// 				method: "DELETE",
+	// 			})
+	// 				.then((res) => res.json())
+	// 				.then((data) => {
+	// 					// console.log('after delete ', data);
+	// 					if (data.deletedCount) {
+	// 						Swal.fire({
+	// 							title: "Deleted!",
+	// 							text: "Your recipe has been deleted.",
+	// 							icon: "success",
+	// 						});
 
-							// remove the recipe from the state
-							const remainingRecipes = recipes.filter(
-								(rec) => rec._id !== _id
-							);
-							setRecipes(remainingRecipes);
-						}
-					});
-			}
-		});
-	};
+	// 						// remove the recipe from the state
+	// 						const remainingRecipes = recipes.filter(
+	// 							(rec) => rec._id !== _id
+	// 						);
+	// 						setRecipes(remainingRecipes);
+	// 					}
+	// 				});
+	// 		}
+	// 	});
+	// };
 
 	return (
 		<div>
