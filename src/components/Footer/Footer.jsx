@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router";
 const logo = "/assets/recipe.png";
 
 const Footer = () => {
-	const links = <></>;
+	
 
 	return (
 		<div>

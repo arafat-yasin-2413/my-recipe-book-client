@@ -13,8 +13,6 @@ const RootLayout = () => {
        
             <Outlet></Outlet>
 
-            {/* eikhane footer bosbe */}
-
 
             <Footer></Footer>
         </div>

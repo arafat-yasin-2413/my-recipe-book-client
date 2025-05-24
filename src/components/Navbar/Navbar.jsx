@@ -90,11 +90,11 @@ const Navbar = () => {
 				<ul className="menu menu-horizontal px-1 gap-1">{links}</ul>
 			</div>
 
-            <div>
+            {/* <div>
                 {
                     user && <h4 className="bg-red-100 px-4 py-1 rounded">{user?.email}</h4>
                 }
-            </div>
+            </div> */}
 
 			<div className="navbar-end gap-2">
 				{!user && <img className="w-8" src={normalUser} alt="" />}
@@ -111,7 +111,7 @@ const Navbar = () => {
 					/>
 
 					<div
-						className="absolute top-full -left-10 px-6 mt-2 max-w-[200px] bg-white border rounded-md shadow-lg z-50 text-center
+						className="absolute top-full -left-10 px-6 mt-2 max-w-[100px] bg-white border rounded-md shadow-lg z-50 text-center
                         opacity-0 group-hover:opacity-100 group-hover:translate-y-1 transition-all duration-200"
 					>
 						<p className="text-sm font-semibold text-red-500 py-2">

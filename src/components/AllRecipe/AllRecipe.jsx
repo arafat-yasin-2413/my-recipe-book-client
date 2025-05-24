@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
 import { AuthContext } from '../../contexts/AuthContext';
 import SingleRecipe from '../SingleRecipe/SingleRecipe';
+import RecipeCard from '../RecipeCard/RecipeCard';
 
 const AllRecipe = () => {
 
@@ -16,15 +17,15 @@ const AllRecipe = () => {
 				<h2 className="text-3xl text-center font-bold mt-10">
 					All Recipes
 				</h2>
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10">
+				<div className="grid grid-cols-1 md:grid-cols-4 gap-3 my-10">
 					{recipes.length > 0 &&
 						recipes.map((recipe) => (
-							<SingleRecipe
+							<RecipeCard
 								key={recipe._id}
 								recipe={recipe}
 								recipes={recipes}
 								setRecipes={setRecipes}
-							></SingleRecipe>
+							></RecipeCard>
 						))}
 				</div>
 			</section>

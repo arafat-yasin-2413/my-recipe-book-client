@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { CiHeart } from "react-icons/ci";
 import { Link } from "react-router";
-import Swal from "sweetalert2";
 
-const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
-	const { _id, title, cuisine, image, likes, preparationTime } = recipe || {};
+const RecipeCard = ({ recipe }) => {
+	const { _id, title, cuisine, image, likes } = recipe || {};
 	const [likeCount, setLikeCount] = useState(likes);
 
 	console.log(recipe);
@@ -24,50 +23,12 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 			});
 	};
 
-	const handleDelete = (id) => {
-		console.log("id to delete", id);
-
-		Swal.fire({
-			title: "Are you sure?",
-			text: "You won't be able to revert this!",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, delete it!",
-		}).then((result) => {
-			// console.log(result.isConfirmed);
-			if (result.isConfirmed) {
-				fetch(`http://localhost:3000/recipes/${_id}`, {
-					method: "DELETE",
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						// console.log('after delete ', data);
-						if (data.deletedCount) {
-							Swal.fire({
-								title: "Deleted!",
-								text: "Your recipe has been deleted.",
-								icon: "success",
-							});
-
-							// remove the recipe from the state
-							const remainingRecipes = recipes.filter(
-								(rec) => rec._id !== _id
-							);
-							setRecipes(remainingRecipes);
-						}
-					});
-			}
-		});
-	};
-
 	return (
 		<div>
-			<div className="card bg-base-100 border-4 border-gray-500 p-2 shadow-sm rounded-2xl">
+			<div className="card bg-base-100 border-4 border-gray-500  shadow-sm rounded-2xl">
 				<figure>
 					<img
-						className="object-cover w-full md:w-full md:h-[300px] px-2 py-2 rounded-2xl"
+						className="object-cover w-full md:w-[150px] md:h-[150px] py-2  rounded-xl"
 						src={image}
 						alt={`image of ${title}`}
 					/>
@@ -84,15 +45,14 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 						<h4 className="text-[1rem] font-medium">{likeCount}</h4>
 					</div>
 					<h2 className="card-title">{title}</h2>
-					
 
 					<p>cuisine : {cuisine}</p>
 
-                    <p>Prep. time: {preparationTime} minutes</p>
+					
 
 					<div className="flex gap-1">
 						<Link to={`/recipe/${_id}`}>
-							<button className="btn btn-sm">View Details</button>
+							<button className="btn btn-sm">See Details</button>
 						</Link>
 
 						{/* <Link to={`updateRecipe/${_id}`}>
@@ -114,4 +74,4 @@ const SingleRecipe = ({ recipe, recipes, setRecipes }) => {
 	);
 };
 
-export default SingleRecipe;
+export default RecipeCard;
