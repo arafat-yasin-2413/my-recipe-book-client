@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import Banner from "../Banner/Banner";
 import Top6Recipes from "../Top6Recipes/Top6Recipes";
 import CookingTips from "../CookingTips/CookingTips";
+import FAQ from "../FAQ/FAQ";
 
 const Home = () => {
 	// const initialRecipes = useLoaderData();
@@ -42,6 +43,8 @@ const Home = () => {
 
             <CookingTips></CookingTips>
             
+
+            <FAQ></FAQ>
 			
 		</div>
 	);
