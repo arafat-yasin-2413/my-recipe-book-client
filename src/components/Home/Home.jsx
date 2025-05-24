@@ -2,6 +2,7 @@ import React, { use, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import SingleRecipe from "../SingleRecipe/SingleRecipe";
 import { AuthContext } from "../../contexts/AuthContext";
+import Banner from "../Banner/Banner";
 
 const Home = () => {
 	const initialRecipes = useLoaderData();
@@ -15,7 +16,11 @@ const Home = () => {
 	// console.log(user?.displayName);
 
 	return (
-		<div className="">
+		<div>
+
+            <Banner></Banner>
+
+
 			<div className="mt-10">
 				<Link to="/recipes/top">
 					<button className="btn py-12 px-2 text-4xl">
@@ -24,6 +29,9 @@ const Home = () => {
 				</Link>
 			</div>
 
+
+
+            {/* All Recipe section */}
 			<section>
 				<h2 className="text-3xl text-center font-bold mt-24">
 					All Recipes Home Page
