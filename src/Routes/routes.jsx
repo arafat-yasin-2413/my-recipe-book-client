@@ -11,6 +11,7 @@ import SignUp from "../components/SingnUp/SignUp";
 import PrivateRoute from "../providers/PrivateRoute";
 import Top6Recipes from "../components/Top6Recipes/Top6Recipes";
 import AllRecipe from "../components/AllRecipe/AllRecipe";
+import ErrorPage from "../pages/ErrorPage";
 
 const router = createBrowserRouter([
 	{
@@ -81,7 +82,7 @@ const router = createBrowserRouter([
 
 	{
 		path: "/*",
-		element: <h2>This is error page</h2>,
+		element: <ErrorPage></ErrorPage>,
 	},
 ]);
 
